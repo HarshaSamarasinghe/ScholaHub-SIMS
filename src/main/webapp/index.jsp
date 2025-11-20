@@ -1,0 +1,1 @@
+<%@ page forward="WEB-INF/views/login.jsp" %>

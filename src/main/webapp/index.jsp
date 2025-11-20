@@ -15,6 +15,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -56,24 +57,28 @@
 <div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
 <div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-12">
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-700 px-4 sm:px-10 py-3 fixed top-0 left-0 right-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="flex items-center gap-4 text-primary dark:text-white">
-<div class="size-6 text-primary dark:text-white">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
-</svg>
-</div>
-<h2 class="text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">ScholaHub</h2>
-</div>
-<div class="flex flex-1 justify-end gap-8 items-center">
-<div class="hidden md:flex items-center gap-9">
-<a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Contact</a>
-<a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">About</a>
-<a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Support</a>
-</div>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
-<span class="truncate"><a href="Authentication/Login.jsp">Login</a></span>
-</button>
-</div>
+    <div class="flex items-center gap-4 text-primary dark:text-white">
+        <!-- Replaced SVG with Material Icon -->
+        <span class="material-symbols-outlined text-3xl">school</span>
+
+        <h2 class="text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+            ScholaHub
+        </h2>
+    </div>
+
+    <div class="flex flex-1 justify-end gap-8 items-center">
+        <div class="hidden md:flex items-center gap-9">
+            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Contact</a>
+            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">About</a>
+            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Support</a>
+        </div>
+
+        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
+            <span class="truncate">
+                <a href="Authentication/Login.jsp">Login</a>
+            </span>
+        </button>
+    </div>
 </header>
 <main class="mt-16">
 <div class="@container">

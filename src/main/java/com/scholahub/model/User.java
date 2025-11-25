@@ -9,14 +9,12 @@ public class User {
     private String userName;
     private String Password;
     private UserRole role;
-    private int studentID;
-    private int teacherID;
-    private int adminID;
+
 
 
     public User() {}
 
-    public User(int userID, String firstName, String lastName, String phoneNumber, String userName, String password, UserRole role, int studentID, int teacherID, int adminID) {
+    public User(int userID, String firstName, String lastName, String phoneNumber, String userName, String password, UserRole role) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,9 +22,6 @@ public class User {
         this.userName = userName;
         Password = password;
         this.role = role;
-        this.studentID = studentID;
-        this.teacherID = teacherID;
-        this.adminID = adminID;
     }
 
     public int getUserID() {
@@ -57,31 +52,8 @@ public class User {
         return role;
     }
 
-    public int getStudentID() {
-        return studentID;
-    }
-
-    public int getTeacherID() {
-        return teacherID;
-    }
-
-    public int getAdminID() {
-        return adminID;
-    }
 
     //Setters
-
-    public void setAdminID(int adminID) {
-        this.adminID = adminID;
-    }
-
-    public void setTeacherID(int teacherID) {
-        this.teacherID = teacherID;
-    }
-
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
 
     public void setRole(UserRole role) {
         this.role = role;

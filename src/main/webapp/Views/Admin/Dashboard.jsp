@@ -61,7 +61,7 @@ tailwind.config = {
       <span class="material-symbols-outlined">school</span> Students
     </a>
 
-    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-gray-300" href="#">
+    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-gray-300" href="AddTeacher.jsp">
       <span class="material-symbols-outlined">group</span> Teachers
     </a>
 

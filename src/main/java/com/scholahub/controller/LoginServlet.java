@@ -37,16 +37,20 @@ public class LoginServlet extends HttpServlet {
         // Validate using DAO
         User user = userDAO.authenticate(username, password);
 
-        if (user == null) {
+        if (user != null) {
+
+            // Login success → create session
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedInUser", user);
+        }
+        else {
             // Login failed → show error on login.jsp
             request.setAttribute("errorMessage", "Invalid username or password!");
             request.getRequestDispatcher("/Authentication/Login.jsp").forward(request, response);
             return;
         }
 
-        // Login success → create session
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
+
 
         // Redirect based on role
         switch (user.getRole()) {

@@ -57,20 +57,24 @@
 <div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
 <div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-12">
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-700 px-4 sm:px-10 py-3 fixed top-0 left-0 right-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-    <div class="flex items-center gap-4 text-primary dark:text-white">
-        <!-- Replaced SVG with Material Icon -->
-        <span class="material-symbols-outlined text-3xl">school</span>
 
-        <h2 class="text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
-            ScholaHub
-        </h2>
-    </div>
+    <a href="index.jsp">
+    <div class="flex items-center gap-4 text-primary dark:text-white">
+            <!-- Replaced SVG with Material Icon -->
+            <span class="material-symbols-outlined text-3xl">school</span>
+
+            <h2 class="text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                ScholaHub
+            </h2>
+        </div>
+    </a>
+
 
     <div class="flex flex-1 justify-end gap-8 items-center">
         <div class="hidden md:flex items-center gap-9">
-            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Contact</a>
-            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">About</a>
-            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Support</a>
+            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="Views/Contact.jsp">Contact</a>
+            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="Views/About.jsp">About</a>
+            <a class="text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="Views/Support.jsp">Support</a>
         </div>
 
         <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
@@ -180,10 +184,10 @@
                     <div>
                         <h4 class="font-semibold text-white tracking-wider uppercase">Quick Links</h4>
                         <ul class="mt-4 space-y-2">
-                            <li><a class="text-gray-300 hover:text-white text-sm" href="#">About</a></li>
+                            <li><a class="text-gray-300 hover:text-white text-sm" href="Views/About.jsp">About</a></li>
                             <li><a class="text-gray-300 hover:text-white text-sm" href="#">Features</a></li>
-                            <li><a class="text-gray-300 hover:text-white text-sm" href="#">Contact</a></li>
-                            <li><a class="text-gray-300 hover:text-white text-sm" href="#">Support</a></li>
+                            <li><a class="text-gray-300 hover:text-white text-sm" href="Views/Contact.jsp">Contact</a></li>
+                            <li><a class="text-gray-300 hover:text-white text-sm" href="Views/Support.jsp">Support</a></li>
                         </ul>
                     </div>
                     <div>

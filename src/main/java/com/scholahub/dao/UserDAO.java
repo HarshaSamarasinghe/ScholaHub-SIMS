@@ -41,10 +41,37 @@ public class UserDAO {
         user.setUserName(rs.getString("userName"));
         user.setPassword(rs.getString("password"));
         user.setRole(UserRole.valueOf(rs.getString("role")));
-        user.setStudentID(rs.getInt("studentID"));
-        user.setTeacherID(rs.getInt("teacherID"));
-        user.setAdminID(rs.getInt("adminID"));
 
         return user;
     }
+
+//    public int createUser(String firstName, String lastName, String phone,
+//                          String username, String password, UserRole role,
+//                          String profileImage) {
+//
+//        String sql = "INSERT INTO users (firstName, lastName, phoneNumber, userName, password, role, profileImage) "
+//                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+//
+//        try (Connection con = DBConnection.getConnection();
+//             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//
+//            ps.setString(1, firstName);
+//            ps.setString(2, lastName);
+//            ps.setString(3, phone);
+//            ps.setString(4, username);
+//            ps.setString(5, password);
+//            ps.setString(6, role.name());
+//            ps.setString(7, profileImage);
+//
+//            ps.executeUpdate();
+//
+//            ResultSet rs = ps.getGeneratedKeys();
+//            if (rs.next()) return rs.getInt(1);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return -1;
+//    }
+
 }

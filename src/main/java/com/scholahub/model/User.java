@@ -9,12 +9,18 @@ public class User {
     private String userName;
     private String Password;
     private UserRole role;
-
+    private String profileImage;
+    private String Department;
+    private String subjectsTeach;
+    private String subjectsEnrolled;
+    private String studentGrade;
+    private String Bio;
+    private String Qualifications;
 
 
     public User() {}
 
-    public User(int userID, String firstName, String lastName, String phoneNumber, String userName, String password, UserRole role) {
+    public User(int userID, String firstName, String lastName, String phoneNumber, String userName, String password, UserRole role, String profileImage, String department, String subjectsTeach, String subjectsEnrolled, String studentGrade, String bio, String qualifications) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +28,74 @@ public class User {
         this.userName = userName;
         Password = password;
         this.role = role;
+        this.profileImage = profileImage;
+        Department = department;
+        this.subjectsTeach = subjectsTeach;
+        this.subjectsEnrolled = subjectsEnrolled;
+        this.studentGrade = studentGrade;
+        Bio = bio;
+        this.Qualifications = qualifications;
     }
+
+    //Setters
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public void setDepartment(String department) {
+        Department = department;
+    }
+
+    public void setSubjectsTeach(String subjectsTeach) {
+        this.subjectsTeach = subjectsTeach;
+    }
+
+    public void setSubjectsEnrolled(String subjectsEnrolled) {
+        this.subjectsEnrolled = subjectsEnrolled;
+    }
+
+    public void setStudentGrade(String studentGrade) {
+        this.studentGrade = studentGrade;
+    }
+
+    public void setBio(String bio) {
+        Bio = bio;
+    }
+
+    public void setQualifications(String qualifications) {
+        Qualifications = qualifications;
+    }
+
+    //Getters
 
     public int getUserID() {
         return userID;
@@ -52,35 +125,32 @@ public class User {
         return role;
     }
 
-
-    //Setters
-
-    public void setRole(UserRole role) {
-        this.role = role;
+    public String getProfileImage() {
+        return profileImage;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public String getDepartment() {
+        return Department;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getSubjectsTeach() {
+        return subjectsTeach;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getSubjectsEnrolled() {
+        return subjectsEnrolled;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getStudentGrade() {
+        return studentGrade;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getBio() {
+        return Bio;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public String getQualifications() {
+        return Qualifications;
     }
 
     // --- Utility Methods for Role Checking ---

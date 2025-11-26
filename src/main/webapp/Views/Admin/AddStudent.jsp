@@ -18,19 +18,25 @@
 %>
 <script>
 window.onload = function() {
+    // Note: The JSP scriptlet should only execute if 'toast' is NOT null.
+    // However, the original logic had an issue (checking if toast == null)
+    // I am assuming the intention is to show the toast IF it exists.
     const toastMsg = "<%= toast %>";
     const toast = document.getElementById("toast");
-    toast.textContent = toastMsg;
-    toast.style.display = "block";
+    if(toastMsg && toast) {
+        toast.textContent = toastMsg;
+        toast.style.display = "block";
 
-    setTimeout(() => {
-        toast.style.opacity = "0";
-        toast.style.transition = "opacity 1s";
-    }, 2000);
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transition = "opacity 1s";
+        }, 2000);
 
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 3000);
+        setTimeout(() => {
+            toast.style.display = "none";
+            toast.style.opacity = "1"; // Reset opacity for next message
+        }, 3000);
+    }
 }
 </script>
 <%
@@ -96,11 +102,11 @@ tailwind.config = {
       <span class="material-symbols-outlined">dashboard</span> Dashboard
     </a>
 
-    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-gray-300" href="AddStudent.jsp">
+    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/20 text-white font-semibold" href="AddStudent.jsp">
       <span class="material-symbols-outlined">school</span> Students
     </a>
 
-    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/20 text-white font-semibold" href="AddTeacher.jsp">
+    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-gray-300" href="AddTeacher.jsp">
       <span class="material-symbols-outlined">group</span> Teachers
     </a>
 
@@ -144,18 +150,18 @@ tailwind.config = {
   <main class="flex-1 p-4 md:p-8 overflow-y-auto">
 
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-      <h3 class="text-2xl font-bold">Register New Teacher</h3>
+      <h3 class="text-2xl font-bold">Register New Student</h3>
       <a href="#" class="flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-4 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
         <span class="material-symbols-outlined">list</span>
-        View All Teachers
+        View All Students
       </a>
     </div>
 
     <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
 
-        <form action="<%=request.getContextPath() %>/addTeacher" method="post" enctype="multipart/form-data" class="space-y-6">
+        <form action="<%=request.getContextPath() %>/addStudent" method="post" enctype="multipart/form-data" class="space-y-6">
 
-            <p class="text-lg font-medium text-gray-700 dark:text-gray-200 border-b pb-3 mb-4 border-gray-200 dark:border-gray-700">Teacher Details</p>
+            <p class="text-lg font-medium text-gray-700 dark:text-gray-200 border-b pb-3 mb-4 border-gray-200 dark:border-gray-700">Student Details</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
@@ -172,42 +178,43 @@ tailwind.config = {
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
-                    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone <span class="text-red-500">*</span></label>
-                    <input type="text" id="phone" name="phone" required
+                    <label for="admissionNumber" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Admission Number <span class="text-red-500">*</span></label>
+                    <input type="text" id="admissionNumber" name="admissionNumber" required
                            class="w-full border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                 </div>
                 <div class="space-y-2">
-                    <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username <span class="text-red-500">*</span></label>
-                    <input type="text" id="username" name="username" required
+                    <label for="dob" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Date of Birth <span class="text-red-500">*</span></label>
+                    <input type="date" id="dob" name="dob" required
                            class="w-full border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
-                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password <span class="text-red-500">*</span></label>
-                    <input type="password" id="password" name="password" required
+                    <label for="currentGrade" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Current Grade/Class <span class="text-red-500">*</span></label>
+                    <input type="text" id="currentGrade" name="currentGrade" required
                            class="w-full border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                 </div>
                 <div class="space-y-2">
-                    <label for="qualifications" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Qualifications <span class="text-red-500">*</span></label>
-                    <input type="text" id="qualifications" name="qualifications" required
+                    <label for="guardianName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Guardian Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="guardianName" name="guardianName" required
                            class="w-full border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
-                    <label for="department" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Department <span class="text-red-500">*</span></label>
-                    <input type="text" id="department" name="department" required
+                    <label for="guardianContact" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Guardian Contact (Phone/Email) <span class="text-red-500">*</span></label>
+                    <input type="text" id="guardianContact" name="guardianContact" required
                            class="w-full border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                 </div>
                 <div class="space-y-2">
-                    <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Subject Teach <span class="text-red-500">*</span></label>
-                    <input type="text" id="subject" name="subject" required
+                    <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
+                    <input type="text" id="address" name="address"
                            class="w-full border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                 </div>
             </div>
+
 
             <div class="space-y-2">
                 <label for="profileImage" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Profile Image</label>
@@ -225,7 +232,7 @@ tailwind.config = {
                 <button type="submit"
                         class="w-full flex items-center justify-center gap-2 bg-primary text-white px-4 h-10 rounded-lg font-semibold hover:opacity-90 transition">
                     <span class="material-symbols-outlined">person_add</span>
-                    Add Teacher to System
+                    Register Student to System
                 </button>
             </div>
         </form>

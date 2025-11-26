@@ -1,66 +1,44 @@
 package com.scholahub.dao;
 
-import com.scholahub.model.Teacher;
 import com.scholahub.model.User;
 import com.scholahub.util.DBConnection;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class TeacherDAO {
 
-    public int addTeacher(User user, Teacher teacher) {
+    public int createTeacher(User teacher) {
 
-        String insertUserSQL =
-                "INSERT INTO users (firstName, lastName, phoneNumber, userName, password, role) " +
-                        "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (firstName, lastName, phoneNumber, userName, password, role, profileImage, department, subjectsTeach, qualifications) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        String insertTeacherSQL =
-                "INSERT INTO teachers (userID, department, subjects,profileImage, qualifications) " +
-                        "VALUES (?, ?, ?, ?,?)";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-        try (Connection conn = DBConnection.getConnection()) {
+            ps.setString(1, teacher.getFirstName());
+            ps.setString(2, teacher.getLastName());
+            ps.setString(3, teacher.getPhoneNumber());
+            ps.setString(4, teacher.getUserName());
+            ps.setString(5, teacher.getPassword());
+            ps.setString(6, teacher.getRole().name());
+            ps.setString(7, teacher.getProfileImage());
+            ps.setString(8, teacher.getDepartment());
+            ps.setString(9, teacher.getSubjectsTeach());
+            ps.setString(10, teacher.getQualifications());
 
-            // Insert user + get generated userID
-            PreparedStatement userStmt =
-                    conn.prepareStatement(insertUserSQL, Statement.RETURN_GENERATED_KEYS);
+            ps.executeUpdate();
 
-            userStmt.setString(1, user.getFirstName());
-            userStmt.setString(2, user.getLastName());
-            userStmt.setString(3, user.getPhoneNumber());
-            userStmt.setString(4, user.getUserName());
-            userStmt.setString(5, user.getPassword());
-            userStmt.setString(6, user.getRole().toString());
-
-            int rows = userStmt.executeUpdate();
-            if (rows == 0) return 0; // user insert failed
-
-            ResultSet rs = userStmt.getGeneratedKeys();
-            int userID = 0;
-
+            ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                userID = rs.getInt(1);
+                return rs.getInt(1);  // Return userID
             }
 
-            // Insert teacher row
-            PreparedStatement teacherStmt =
-                    conn.prepareStatement(insertTeacherSQL);
-
-            teacherStmt.setInt(1, userID);
-            teacherStmt.setString(2,teacher.getDepartment());
-            teacherStmt.setString(3, teacher.getSubject());
-            teacherStmt.setString(4, teacher.getProfileImage());
-            teacherStmt.setString(5, teacher.getQualifications());
-
-            teacherStmt.executeUpdate();
-
-            return userID; // success
-
         } catch (Exception e) {
-            System.out.println("ERROR in TeacherDAO:");
             e.printStackTrace();
         }
-
-
-        return 0;
+        return -1;
     }
 }

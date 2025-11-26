@@ -12,6 +12,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
+<!--TOAST Message -->
+<%
+    String toast = (String) session.getAttribute("toast");
+    if (toast != null) {
+%>
+<script>
+window.onload = function() {
+    const toastMsg = "<%= toast %>";
+    const toast = document.getElementById("toast");
+    toast.textContent = toastMsg;
+    toast.style.display = "block";
+
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transition = "opacity 1s";
+    }, 2000);
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 3000);
+}
+</script>
+<%
+        session.removeAttribute("toast");
+    }
+%>
+
 <script>
 tailwind.config = {
   darkMode: "class",
@@ -53,11 +80,11 @@ tailwind.config = {
   </div>
 
   <nav class="flex-1 p-4 space-y-2">
-    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/20 text-white font-semibold" href="#">
+    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/20 text-white font-semibold" href="Dashboard.jsp">
       <span class="material-symbols-outlined">dashboard</span> Dashboard
     </a>
 
-    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-gray-300" href="#">
+    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-gray-300" href="AddStudent.jsp">
       <span class="material-symbols-outlined">school</span> Students
     </a>
 
@@ -92,11 +119,9 @@ tailwind.config = {
   <header class="flex items-center justify-between h-16 px-4 md:px-8 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50">
 
     <div class="flex items-center gap-4">
-      <!-- Mobile menu button -->
       <button id="menuBtn" class="md:hidden text-gray-700 dark:text-gray-300">
         <span class="material-symbols-outlined text-3xl">menu</span>
       </button>
-
       <h2 class="text-xl font-bold">Admin Dashboard</h2>
     </div>
 
@@ -118,7 +143,6 @@ tailwind.config = {
       </button>
     </div>
 
-    <!-- STAT CARDS -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 flex items-start gap-4">
@@ -151,12 +175,19 @@ tailwind.config = {
         </div>
       </div>
 
+      <!-- TOAST BOX -->
+     <div id="toast"
+          style="position: fixed; right: 20px; bottom: 20px;
+                 background: #4CAF50; color: white;
+                 padding: 15px 20px; border-radius: 6px;
+                 font-family: Arial; display: none;">
+     </div>
+
     </div>
   </main>
 </div>
 </div>
 
-<!-- Mobile Sidebar Toggle Script -->
 <script>
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
